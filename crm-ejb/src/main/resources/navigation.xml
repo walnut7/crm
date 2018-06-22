@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<navigation>
+	<menus>
+		<menu name="menuCustInfo" label="客户信息" ref="itemCustMgt" />
+		<menu name="menuVideoAuth" label="视频面签" ref="itemVideoAuth" />
+		<menu name="menuAppointStore" label="预约到店" ref="itemAppointStore" />
+		<menu name="menuAccountMgt" label="账户管理" >
+			<item>itemUser</item>
+			<item>itemRole</item>
+			<item>itemPermission</item>
+			<item>itemFunctionGroup</item>
+			<item>itemAppUnit</item>
+		</menu>
+		<menu name="menuSystemMgt" label="系统管理">
+			<item>itemDictConfig</item>
+			<item>itemLogInfo</item>
+		</menu>
+		<!-- <menu name="menudemo4" label="测试4">
+			<item>demo4</item>
+		</menu> -->
+	</menus>
+	
+	<items>
+		<item name="itemCustMgt" label="用户管理">
+			<url>/crm-web/crm/customer_info</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemVideoAuth" label="视频面签">
+			<url>/crm-web/crm/video_auth</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemAppointStore" label="预约到店">
+			<url>/crm-web/crm/reserver_info</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemUser" label="用户">
+			<url>/crm-web/crm/ccc</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemRole" label="角色">
+			<url>/crm-web/crm/ddd</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemPermission" label="权限">
+			<url>/crm-web/crm/ddd</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemFunctionGroup" label="功能组">
+			<url>/crm-web/crm/ddd</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemAppUnit" label="应用系统">
+			<url>/crm-web/crm/ddd</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemDictConfig" label="参数管理">
+			<url>/crm-web/crm/param_config</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemLogInfo" label="日志信息">
+			<url>/crm-web/crm/fesf</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<!-- <item name="demo4" label="测试页4">
+			<url>/crm-web/demo/page4</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item> -->
+	</items>
+</navigation>
