@@ -42,6 +42,7 @@
     <properties>
 		<logger.version>1.2.9</logger.version>
 		<httpclient.version>4.3.5</httpclient.version>
+		<mongodb.driver.version>3.6.3</mongodb.driver.version>
 	</properties>
 
     <dependencies>
@@ -78,8 +79,7 @@
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
         </dependency>
-
-
+        
         <!-- Test scope dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -102,17 +102,26 @@
             <scope>test</scope>               
         </dependency>
         
+        <!-- MongoDB Java Driver -->
+         <!-- <dependency>
+             <groupId>org.hibernate.ogm</groupId>
+             <artifactId>hibernate-ogm-core</artifactId>
+         </dependency> -->
+         
+		<!-- <dependency>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-mongodb</artifactId>
+		</dependency> -->
+        
         <dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.9</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
 		<dependency>
 		    <groupId>dom4j</groupId>
 		    <artifactId>dom4j</artifactId>
-		    <version>1.6.1</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
@@ -168,6 +177,17 @@
                     <ejbVersion>3.1</ejbVersion>
                 </configuration>
             </plugin>
+            <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-jar-plugin</artifactId>
+	            <configuration>
+	                <archive>
+	                    <manifestEntries>
+	                        <Dependencies>org.hibernate.ogm:5.3 services, org.hibernate.ogm.mongodb:5.3 services</Dependencies> 
+	                    </manifestEntries>
+	                </archive>
+	            </configuration>
+	        </plugin>
         </plugins>
     </build>
 

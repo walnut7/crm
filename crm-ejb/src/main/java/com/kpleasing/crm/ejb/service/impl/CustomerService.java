@@ -196,6 +196,7 @@ public class CustomerService implements Serializable,CustomerServiceLocal  {
 		}else{
 			custInfoOrg.setCustStatus(customerInfo.getCustStatus());
 		}
+		custInfoOrg.setPhone(customerInfo.getPhone());
 		custInfoOrg.setCustMemo(customerInfo.getCustMemo());
 		custInfoOrg.setUpdateAt(DateUtil.getDate());
 		customerInfoEao.update(custInfoOrg);
@@ -214,8 +215,47 @@ public class CustomerService implements Serializable,CustomerServiceLocal  {
 			customerDetail.setCustId(customerInfo.getCustId());
 			customerDetailEao.save(customerDetail);
 		}else{
-			customerDetail.setId(detailInfo.getId());
-			customerDetailEao.update(customerDetail);
+			detailInfo.setCustId(customerInfo.getCustId());
+			detailInfo.setBirthday(customerDetail.getBirthday());
+			detailInfo.setCustNameSpell(customerDetail.getCustNameSpell());
+			detailInfo.setGender(customerDetail.getGender());
+			detailInfo.setNation(customerDetail.getNation());
+			detailInfo.setDriveModel(customerDetail.getDriveModel());
+			detailInfo.setAnnualIncome(customerDetail.getAnnualIncome());
+			detailInfo.setRelFlag(customerDetail.getRelFlag());
+			detailInfo.setIncomeFrom(customerDetail.getIncomeFrom());
+			detailInfo.setIncomeStatus(customerDetail.getIncomeStatus());
+			detailInfo.setEntryYear(customerDetail.getEntryYear());
+			detailInfo.setLiveStatus(customerDetail.getLiveStatus());
+			detailInfo.setWorkUnit(customerDetail.getWorkUnit());
+			detailInfo.setPosition(customerDetail.getPosition());
+			detailInfo.setEduLevel(customerDetail.getEduLevel());
+			detailInfo.setMarrStatus(customerDetail.getMarrStatus());
+			detailInfo.setSpouseName(customerDetail.getSpouseName());
+			detailInfo.setSpouseCertType(customerDetail.getSpouseCertType());
+			detailInfo.setSpouseCertCode(customerDetail.getSpouseCertCode());
+			detailInfo.setSpousePhone(customerDetail.getSpousePhone());
+			detailInfo.setSpouseAnnualIncome(customerDetail.getAnnualIncome());
+			detailInfo.setSpouseIncomeFrom(customerDetail.getSpouseIncomeFrom());
+			detailInfo.setSpouseContactAddr(customerDetail.getSpouseContactAddr());
+			detailInfo.setSpouseWorkUnit(customerDetail.getSpouseWorkUnit());
+			detailInfo.setIndustry(customerDetail.getIndustry());
+			detailInfo.setMaxQuota(customerDetail.getMaxQuota());
+			detailInfo.setCompanyNature(customerDetail.getCompanyNature());
+			detailInfo.setWorkYear(customerDetail.getWorkYear());
+			detailInfo.setUnitTel(customerDetail.getUnitTel());
+			detailInfo.setEmail(customerDetail.getEmail());
+			detailInfo.setCertOrg(customerDetail.getCertOrg());
+			detailInfo.setRegularDepositAmt(customerDetail.getRegularDepositAmt());
+			detailInfo.setZipCode(customerDetail.getZipCode());
+			detailInfo.setCertAddr(customerDetail.getCertAddr());
+			detailInfo.setFamilyTel(customerDetail.getFamilyTel());
+			detailInfo.setContactAddr(customerDetail.getContactAddr());
+			detailInfo.setWorkAddr(customerDetail.getWorkAddr());
+			customerDetailEao.update(detailInfo);
+			
+			/*customerDetail.setId(detailInfo.getId());
+			customerDetailEao.update(customerDetail);*/
 		}
 		logger.info("保存成功！");
 	}

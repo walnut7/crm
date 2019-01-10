@@ -4,6 +4,7 @@
 		<menu name="menuCustInfo" label="客户信息" ref="itemCustMgt" />
 		<menu name="menuVideoAuth" label="视频面签" ref="itemVideoAuth" />
 		<menu name="menuAppointStore" label="预约到店" ref="itemAppointStore" />
+		<menu name="menuSpdbLog" label="浦发Ⅱ/Ⅲ开户查询" ref="itemSpdbLog" />
 		<menu name="menuAccountMgt" label="账户管理" >
 			<item>itemUser</item>
 			<item>itemRole</item>
@@ -35,6 +36,12 @@
 		</item>
 		<item name="itemAppointStore" label="预约到店">
 			<url>/crm-web/crm/reserver_info</url>
+			<security>
+				<rule-code></rule-code>
+			</security>
+		</item>
+		<item name="itemSpdbLog" label="浦发Ⅱ/Ⅲ开户查询">
+			<url>http://kpxmc.e-autofinance.net:7700/wxss/api/spdb_log</url>
 			<security>
 				<rule-code></rule-code>
 			</security>

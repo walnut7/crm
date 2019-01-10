@@ -50,7 +50,7 @@ public class TbPersonalCustomerDetailInfo  extends Pagination implements Seriali
 	@Column(name="edu_level", length=20)
 	private String eduLevel;
 
-	@Column(length=32)
+	@Column(length=60)
 	private String email;
 
 	@Column(name="entry_year", length=20)

@@ -57,6 +57,7 @@ public class ConfigService implements Serializable, ConfigServiceLocal {
 			config.LOCAL_ATTACH_PATH = map.get("LOCAL_ATTACH_PATH");
 			config.REMOTE_ATTACH_PATH = map.get("REMOTE_ATTACH_PATH");
 			config.EWECHAT_URL = map.get("EWECHAT_URL");
+			config.NAVIGATION_CONF_PATH = map.get("NAVIGATION_CONF_PATH");
 			
 			config.setSecurityKeyList(securKeyEao.findAll());
 		}

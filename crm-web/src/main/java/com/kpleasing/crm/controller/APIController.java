@@ -56,7 +56,7 @@ import com.kpleasing.crm.service.SyncFaceVedioTimeService;
 import com.kpleasing.crm.service.SyncReserverCustomerService;
 import com.kpleasing.crm.service.SyncTMCustomerService;
 
-@Controller
+@Controller 
 @RequestMapping(value = "/api")
 public class APIController {
 	

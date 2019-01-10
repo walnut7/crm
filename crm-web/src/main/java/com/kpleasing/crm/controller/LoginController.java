@@ -97,11 +97,14 @@ public class LoginController {
 				logger.info(loginUser.getUsername());
 				logger.info(loginUser.getPassword());
 
-				NavigationUtil navigation = NavigationUtil.getInstance();
-				List<Menu> menus = navigation.getMenus();
+				
+				//List<Menu> menus = navigation.getMenus();
+				
+				List<Menu> menus = ejbService.getNavigationServ().getMenus();
+				
 
 				StringBuilder jsonTree = new StringBuilder();
-				jsonTree.append("[").append(navigation.getJsonMenuTree(menus)).append("]");
+				jsonTree.append("[").append(ejbService.getNavigationServ().getJsonMenuTree(menus)).append("]");
 
 				return jsonTree.toString();
 			}

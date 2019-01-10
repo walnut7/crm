@@ -21,18 +21,18 @@
 			</bean>
 			
 			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+			<!-- <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true"/>
-            </bean>
+            </bean> -->
   		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射， 配置一个基于注解的定制的WebBindingInitializer，解决日期转换问题，方法级别的处理器映射 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
   		<property name="webBindingInitializer">
    			<bean class="com.kpleasing.crm.web.spring.WebBindingInitializerLocal" />
   		</property>
- 	</bean>
+ 	</bean> -->
 	
 	<!-- 定义JSP文件的位置 --> 
 	<bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

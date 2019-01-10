@@ -211,18 +211,18 @@ public class APIService implements Serializable, APIServiceLocal {
 			if(null == tbCustInfo) {
 				throw new CRMException("FAILED", "客户ID不存在！");
 			} else {
-				logger.info("保存基本信息......");
+				logger.info("更新基本信息......");
 				tbCustInfo.setCertType(custReq.getCert_type());
 				tbCustInfo.setCertCode(custReq.getCert_code());
 				//tbCustInfo.setChannel("");
-				tbCustInfo.setCreateAt(DateUtil.getDate());
+				tbCustInfo.setUpdateAt(DateUtil.getDate());
 				// tbCustInfo.setCustMemo("");
 				tbCustInfo.setCustName(custReq.getCust_name());
 				// tbCustInfo.setCustStatus("");
 				//tbCustInfo.setCustType("");
 				//tbCustInfo.setMemo("");
 				tbCustInfo.setPhone(custReq.getPhone());
-				customerEao.save(tbCustInfo);
+				customerEao.update(tbCustInfo);
 				
 				logger.info("保存详细信息......");
 				TbPersonalCustomerDetailInfo tbDetailCustInfo = tbCustInfo.getTbPersonalCustomerDetailInfo();

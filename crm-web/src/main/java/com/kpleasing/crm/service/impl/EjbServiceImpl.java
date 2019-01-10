@@ -9,6 +9,7 @@ import com.kpleasing.crm.ejb.service.local.APIServiceLocal;
 import com.kpleasing.crm.ejb.service.local.ConfigServiceLocal;
 import com.kpleasing.crm.ejb.service.local.CustomerServiceLocal;
 import com.kpleasing.crm.ejb.service.local.LoginServiceLocal;
+import com.kpleasing.crm.ejb.service.local.NavigationServiceLocal;
 import com.kpleasing.crm.ejb.service.local.NotifyServiceLocal;
 import com.kpleasing.crm.ejb.service.local.SystemServiceLocal;
 import com.kpleasing.crm.service.EjbService;
@@ -24,6 +25,7 @@ public class EjbServiceImpl implements EjbService {
 	private static CustomerServiceLocal custServ;
 	private static ConfigServiceLocal confServ;
 	private static NotifyServiceLocal notifyServ;
+	private static NavigationServiceLocal navigationServ;
 	
 	@Override
 	public LoginServiceLocal getLoginServ() {
@@ -93,7 +95,7 @@ public class EjbServiceImpl implements EjbService {
 	
 	@Override
 	public NotifyServiceLocal getNotifyServ() {
-		if (custServ == null) {
+		if (notifyServ == null) {
 			try {
 				notifyServ = (NotifyServiceLocal) lookupEJB("java:app/crm-ejb/NotifyService!com.kpleasing.crm.ejb.service.local.NotifyServiceLocal");
 			} catch (NamingException e) {                  
@@ -102,6 +104,20 @@ public class EjbServiceImpl implements EjbService {
 			}
 		}
 		return notifyServ;
+	}
+	
+	
+	@Override
+	public NavigationServiceLocal getNavigationServ() {
+		if (navigationServ == null) {
+			try {
+				navigationServ = (NavigationServiceLocal) lookupEJB("java:app/crm-ejb/NavigationService!com.kpleasing.crm.ejb.service.local.NavigationServiceLocal");
+			} catch (NamingException e) {                  
+				// TODO
+				e.printStackTrace();
+			}
+		}
+		return navigationServ;
 	}
 	
 	/**

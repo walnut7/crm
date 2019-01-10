@@ -1,7 +1,9 @@
 package com.kpleasing.crm.ejb.util;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -21,9 +23,8 @@ import com.kpleasing.crm.ejb.pojo.Menu;
  */
 public class NavigationUtil {
 	private static Logger logger = Logger.getLogger(NavigationUtil.class);
-	private static final String NAVIGATION_CONF_FILE = "/navigation.xml";
 	private static NavigationUtil instance;
-	private Document document;
+	
 	
 	public synchronized static NavigationUtil getInstance() {
 		if (instance == null) {
@@ -32,25 +33,18 @@ public class NavigationUtil {
 		return instance;
 	}
 	
+	private  NavigationUtil() { }
 	
-	public NavigationUtil() {
+	public Document getDocument(String naviFile) {
 		try {
 			SAXReader reader = new SAXReader();
-			this.setDocument(reader.read(this.getClass().getResourceAsStream(NAVIGATION_CONF_FILE)));
+			return reader.read(new File(naviFile));
 		} catch (DocumentException e) {
-			logger.error(e.getMessage(), e);
+			e.printStackTrace();
 		}
-	}
-	
-	
-	public Document getDocument() {
-		return document;
+		return null;
 	}
 
-
-	public void setDocument(Document document) {
-		this.document = document;
-	}
 	
 	
 	/**
@@ -58,8 +52,8 @@ public class NavigationUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Menu> getMenus() {
-		Element root = this.getDocument().getRootElement();
+	public List<Menu> getMenus(Document document) {
+		Element root = document.getRootElement();
 		List<Element> eMenus = root.element("menus").elements();
 		List<Node> subMenus = root.selectNodes("//sub-menu");
 		
@@ -72,10 +66,10 @@ public class NavigationUtil {
 				menu.setRef(eMenu.attributeValue("ref"));
 				
 				if(StringUtils.isBlank(menu.getRef())) {
-					menu.setSub_menus(getSubMenus(eMenu));
-					menu.setItems(getItems(eMenu));
+					menu.setSub_menus(getSubMenus(document, eMenu));
+					menu.setItems(getItems(document, eMenu));
 				} else {
-					menu.setItems(getItems(menu.getRef()));
+					menu.setItems(getItems(document, menu.getRef()));
 				}
 				menuList.add(menu);
 			}
@@ -85,8 +79,8 @@ public class NavigationUtil {
 	
 	
 	@SuppressWarnings("unchecked")
-	private List<Item> getItems(String ref) {
-		Element root = this.getDocument().getRootElement();
+	private List<Item> getItems(Document doc, String ref) {
+		Element root = doc.getRootElement();
 		Node node = root.selectSingleNode("//item[@name='"+ref+"']");
 		List<Item> itemList = new ArrayList<Item>();
 		if(null!=node) {
@@ -129,8 +123,8 @@ public class NavigationUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private List<Menu> getSubMenus(Element eMenu) {
-		Element root = this.getDocument().getRootElement();
+	private List<Menu> getSubMenus(Document doc, Element eMenu) {
+		Element root = doc.getRootElement();
 		
 		List<Menu> subMenuList = new ArrayList<Menu>();
 		List<Element> eSubMenus = eMenu.elements("sub-menu");
@@ -142,10 +136,10 @@ public class NavigationUtil {
 				menu.setLabel(((Element)node).attributeValue("label"));
 				menu.setRef(((Element)node).attributeValue("ref"));
 				if(StringUtils.isBlank(menu.getRef())) {
-					menu.setSub_menus(getSubMenus((Element)node));
-					menu.setItems(getItems((Element)node));
+					menu.setSub_menus(getSubMenus(doc, (Element)node));
+					menu.setItems(getItems(doc, (Element)node));
 				} else {
-					menu.setItems(getItems(menu.getRef()));
+					menu.setItems(getItems(doc, menu.getRef()));
 				}
 				subMenuList.add(menu);
 			}
@@ -160,8 +154,8 @@ public class NavigationUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private List<Item> getItems(Element eMenu) {
-		Element root = this.getDocument().getRootElement();
+	private List<Item> getItems(Document doc, Element eMenu) {
+		Element root = doc.getRootElement();
 		
 		List<Item> itemList = new ArrayList<Item>();
 		List<Element> eItems = eMenu.elements("item");

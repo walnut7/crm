@@ -24,6 +24,7 @@ public class Configurate implements Serializable {
     public String LOCAL_ATTACH_PATH = null;
     public String REMOTE_ATTACH_PATH = null;
     public String EWECHAT_URL = null;
+    public String NAVIGATION_CONF_PATH = null;
     
     private List<TbSecurityKey> securityKeyList;
     
